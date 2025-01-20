@@ -7,6 +7,8 @@ class TestLeafNode(unittest.TestCase):
         self.test_tag = "P"
         self.test_value = "test text"
         self.test_props = { "href": "http://example.com", "class": "hover-show" }
+        self.test_string = "Tag: P, Value: test text, Children: None, Props: {'href': 'http://example.com', 'class': 'hover-show'}"
+        self.test_html = "<P href=\"http://example.com\" class=\"hover-show\">test text</P>"
 
 
     def test__leafnode__when_created_with_no_props__all_properties_have_expected_values(self):
@@ -26,12 +28,11 @@ class TestLeafNode(unittest.TestCase):
         self.assertEqual(node.props, self.test_props)
 
     def test__leafnode__when_converted_to_string__results_in_expected_string(self):
-        expected_string = "Tag: P, Value: test text, Children: None, Props: {'href': 'http://example.com', 'class': 'hover-show'}"
         node = LeafNode(self.test_tag, self.test_value, self.test_props)
 
         string = str(node)
 
-        self.assertEqual(string, expected_string)
+        self.assertEqual(string, self.test_string)
 
     def test__props_to_html__when_called__returns_expected_attributes_string(self):
         node = LeafNode(self.test_tag, self.test_value, self.test_props)
@@ -52,6 +53,20 @@ class TestLeafNode(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             node.to_html()
+
+    def test__to_html__with_no_tag__returns_just_value(self):
+        node = LeafNode(None, self.test_value, self.test_props)
+
+        html = node.to_html()
+
+        self.assertEqual(html, self.test_value)
+
+    def test__to_html__with_tag__returns_expected_htm(self):
+        node = LeafNode(self.test_tag, self.test_value, self.test_props)
+
+        html = node.to_html()
+
+        self.assertEqual(html, self.test_html)
 
 if __name__ == "__main__":
     unittest.main()

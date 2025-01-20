@@ -1,4 +1,3 @@
-from functools import reduce
 from htmlnode import HTMLNode
 
 class LeafNode(HTMLNode):
