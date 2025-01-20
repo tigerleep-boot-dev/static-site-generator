@@ -26,7 +26,7 @@ class TestHTMLNode(unittest.TestCase):
         self.assertEqual(node.props, self.test_props)
 
     def test__htmlnode__when_converted_to_string__results_in_expected_string(self):
-        expected_string = "Tag: P, Value: test text, Children: [Tag: A, Value: link text, Children: None Props: {'href': 'http://example.com'}, Tag: STRONG, Value: bold text, Children: None Props: None] Props: {'href': 'http://example.com', 'class': 'hover-show'}"
+        expected_string = "Tag: P, Value: test text, Children: [Tag: A, Value: link text, Children: None, Props: {'href': 'http://example.com'}, Tag: STRONG, Value: bold text, Children: None, Props: None], Props: {'href': 'http://example.com', 'class': 'hover-show'}"
         node = HTMLNode(self.test_tag, self.test_value, self.test_children, self.test_props)
 
         string = str(node)
