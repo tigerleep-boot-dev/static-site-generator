@@ -42,7 +42,7 @@ class Test_split_nodes_delimiter(unittest.TestCase):
 
         self.assertEqual(nodes, expected_nodes)
 
-    def test_split_nodes_delimiter__with_delimited_text_onlt__returns_expected_nodes(self):
+    def test_split_nodes_delimiter__with_delimited_text_only__returns_expected_nodes(self):
         text_nodes = [TextNode("*bold*", TextType.TEXT)]
         expected_nodes = [TextNode("bold", TextType.BOLD)]
 
